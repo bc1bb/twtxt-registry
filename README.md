@@ -29,5 +29,5 @@ Using the good old way:
 
 ## Installation
 1. `git clone https://github.com/jusdepatate/twtxt-registry && cd twtxt-registry`,
-2. `php check.php` (or go at `http://instance url/check.php`) look at the errors here and install all missing modules.
+2. `php check.php` (or go at `http://instance url/check.php`) look at the errors here and install all missing modules (forget the warnings).
 3. That's all.
