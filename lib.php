@@ -40,7 +40,7 @@ function end_html() {
 }
 
 function nl() {
-    # function to define variable $nl (=new line), <br> for browsers, \n for cURL/CLI
+    # function to define variable $nl (=new line), <br>\n for browsers, \n for cURL/CLI
     if (is_curlwget()) {
         # in case of curl/wget/cli
         return "\n";
@@ -52,7 +52,7 @@ function nl() {
 
 function ascii_logo() {
     $nl = nl();
-
+    # print ascii logo only for cURL/Wget
     if (is_curlwget()) {
         echo " _____ _    _ _______   _______  ______           _     _              $nl";
         echo "|_   _| |  | |_   _\ \ / /_   _| | ___ \         (_)   | |             $nl";
@@ -67,17 +67,14 @@ function ascii_logo() {
 }
 
 function ban() {
-    if (!defined(strval(STDIN))) {
-        # if not running from CLI
-        $banned_ips = [
-            '255.255.255.255', # example IP
-            '0.0.0.0' # Another example IP, you won't encounter them as they are out of range (1->254)
-        ];
+    $banned_ips = [
+        '255.255.255.255', # example IP
+        '0.0.0.0' # Another example IP, you won't encounter them as they are out of range (1->254)
+    ];
 
-        if (in_array($_SERVER['REMOTE_ADDR'], $banned_ips)) {
-            # if client IP is a banned one, give him a 403 error
-            http_response_code(403);
-            die("Banned");
-        }
+    if (in_array($_SERVER['REMOTE_ADDR'], $banned_ips)) {
+        # if client IP is a banned one, give him a 403 error
+        http_response_code(403);
+        die("Banned");
     }
 }
