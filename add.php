@@ -69,10 +69,10 @@ if (is_curlwget()) {
         }
     } else {
         # user is not POSTing
-        echo "To add your link: curl http://". gethostname(). "/add.php -F'name=\"Here is your name\"' -F'url=\"Here is the address of your twtxt\"$nl";
+        echo "To add your link: curl http://". gethostname(). "/add.php -F'name=Here is your name' -F'url=Here is the address of your twtxt$nl";
     }
 } else {
-    echo "To add your link: curl http://". gethostname(). "/add.php -F'name=\"Here is your name\"' -F'url=\"Here is the address of your twtxt\"$nl";
+    echo "To add your link: curl http://". gethostname(). "/add.php -F'name=Here is your name' -F'url=Here is the address of your twtxt'$nl";
 }
 
 end_html();

@@ -9,7 +9,7 @@ No logging. (but you can ip ban using `$banned_ips` in `ban.php`)
 
 ## There is no forms ? how do I add my link ?
 Using the good old way:
-<br>`curl http://here is the instance url/add.php -F'name="Here is your name"' -F'url="Here is the address of your twtxt"`.
+<br>`curl http://here is the instance url/add.php -F'name=Here is your name' -F'url=Here is the address of your twtxt`.
 
 ## Are we able to delete users/links ?
 - Users:
@@ -25,6 +25,7 @@ Using the good old way:
 - *to be done* Checks that the user doesn't exist.
 
 ## Tested on
+- PHP 7.4 & Apache2.4 on Debian 9.
 - PHP 7.2 & Apache2.4 on Ubuntu 18.04.
 
 ## Installation
