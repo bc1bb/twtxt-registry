@@ -4,9 +4,9 @@ include "lib.php";
 ban();
 $nl = nl();
 init_html();
+ascii_logo();
 
 if (is_curlwget()) {
-    ascii_logo();
 
     echo "Welcome !$nl";
 
