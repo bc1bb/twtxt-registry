@@ -37,11 +37,25 @@ if (is_curlwget()) {
                     # "!== false" is required as said here https://stackoverflow.com/a/6752601
                     # MIME Type is plain text (txt file)
 
-                    try {
-                        $db = new TWTXTdb();
+                    $db = new TWTXTdb();
+                    # prepare db
 
-                        $db->exec("CREATE TABLE IF NOT EXISTS users (name TEXT NOT NULL, url TEXT NOT NULL)");
+                    $db->exec("CREATE TABLE IF NOT EXISTS users (name TEXT NOT NULL, url TEXT NOT NULL)");
+                    # create table *if not exists* so that we get no error with the checks below
 
+                    $queryname = $db->prepare('SELECT * FROM users WHERE name = ?');
+                    $queryname->bindParam(1, $name);
+
+                    $queryurl = $db->prepare('SELECT * FROM users WHERE url = ?');
+                    $queryurl->bindParam(1, $url);
+
+                    $queryname = $queryname->execute();
+                    $rowname = $queryname->fetchArray();
+
+                    $queryurl = $queryurl->execute();
+                    $rowurl = $queryurl->fetchArray();
+
+                    if (!$rowname && !$rowurl) {
                         $query = $db->prepare("INSERT INTO users (name, url) VALUES (?, ?)");
                         $query->bindParam(1, $name);
                         $query->bindParam(2, $url);
@@ -52,8 +66,9 @@ if (is_curlwget()) {
                         $db->close();
 
                         echo "$url has been added to our database for user $name$nl";
-                    } catch (Exception $e) {
-                        die("Error catched !$nl\Please send an issue on GitHub (jusdepatate/twtxt-registry):$nl". $e->getMessage() ."$nl");
+                    } else {
+                        # user/url already exists
+                        die("User or URL already exists$nl");
                     }
                 } else {
                     # MIME Type is not valid

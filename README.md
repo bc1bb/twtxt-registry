@@ -22,7 +22,7 @@ Using the good old way:
 - Checks that the URL is actually an URL,
 - Checks the HTTP response code,
 - Checks the MIME Type of the file,
-- *to be done* Checks that the user doesn't exist.
+- Checks that the user doesn't exist.
 
 ## Tested on
 - PHP 7.4 & Apache2.4 on Debian 9.
